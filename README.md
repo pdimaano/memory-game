@@ -1,1 +1,1 @@
-# memory-game
+Create a memory card game using HTML, CSS and Javascript.
