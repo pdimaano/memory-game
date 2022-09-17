@@ -1,3 +1,19 @@
+body {
+  background-color: #63d9e6;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  align-items: center;
+}
+
+h1 {
+  padding: 8px;
+}
+
+#game {
+  box-sizing: border-box;
+  background-color: #eeeeee;
+  border-radius: 10px;
+  max-width: 75%;
+}
 
 #game div {
     border: 1px solid black;
@@ -5,4 +21,58 @@
     height: 100px;
     margin: 20px;
     display: inline-block;
-  }
+}
+
+#controls {
+  display: flex;
+  max-width: 75%;
+  align-items: center;
+  border-radius: 8px;
+  margin-bottom: 9px;
+  padding: 5px;
+}
+
+#best-display {
+  padding-top: 6px;
+}
+
+.red {
+  background-color: #dd1515;
+}
+
+.orange {
+  background-color: #e79932;
+}
+
+.blue {
+  background-color: #2421e2;
+}
+
+.purple {
+  background-color: #b91aee;
+}
+
+.green {
+  background-color: #1fe439;
+}
+
+.yellow {
+  background-color: #dfe524;
+}
+
+.white {
+  background-color: #eeeeee;
+}
+
+.black {
+  background-color: #000000;
+}
+
+.back {
+  background-color: #635f5f;
+  transition: all .2s ease-in-out;
+}
+
+.back:hover {
+  transform: scale(1.3);
+}
