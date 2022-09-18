@@ -8,7 +8,7 @@ const COLORS = [
 const selectedCards = [];
 let score = 0;
 let clicks = 0;
-let numPairsToWin = 6;
+let numPairsToWin = 8;
 let best = 0;
 
 document.getElementById("new-game").addEventListener("click", newGame);
@@ -79,7 +79,7 @@ function handleCardClick(e) {
 }
 
 function checkForMatch() {
-  if (selectedCards[0].className === selectedCards[1],className) {
+  if (selectedCards[0].className === selectedCards[1].className) {
     handleMatch();
   } else {
     handleNotMatch();
