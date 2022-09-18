@@ -1,14 +1,18 @@
 body {
-  background-color: #63d9e6;
+  background-color: #9bdde4;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   align-items: center;
 }
 
 h1 {
   padding: 8px;
+  text-align: center;
+  font-size: 50px;
+  margin: 15px;
 }
 
 #game {
+  margin: auto;
   box-sizing: border-box;
   background-color: #eeeeee;
   border-radius: 10px;
@@ -17,19 +21,24 @@ h1 {
 
 #game div {
     border: 1px solid black;
-    width: 100px;
-    height: 100px;
+    width: 110px;
+    height: 130px;
     margin: 20px;
     display: inline-block;
 }
 
 #controls {
   display: flex;
-  max-width: 75%;
   align-items: center;
   border-radius: 8px;
   margin-bottom: 9px;
-  padding: 5px;
+  padding: 15px;
+}
+
+#new-game {
+  margin: auto;
+  padding: 10px 20px;
+  font-size: 20px;
 }
 
 .red {
@@ -73,7 +82,7 @@ h1 {
 }
 
 .back {
-  background-color: #c7c0c0;
+  background-image: linear-gradient(to bottom right, #d7cbcb, #676363);
   transition: all .1s linear;
 }
 
