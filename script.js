@@ -2,14 +2,12 @@
 
 const FOUND_MATCH_WAIT_MSECS = 1000;
 const COLORS = [
-  "red", "orange", "blue", "purple", "green", "yellow", "white", "black"
+  "red", "orange", "blue", "purple", "green", "yellow", "white", "black", "pink", "brown"
 ];
 
 const selectedCards = [];
 let score = 0;
-let clicks = 0;
-let numPairsToWin = 8;
-let best = 0;
+let numPairsToWin = 10;
 
 document.getElementById("new-game").addEventListener("click", newGame);
 
@@ -19,7 +17,6 @@ function newGame() {
     board.removeChild(board.firstChild);
   }
   score = 0;
-  clicks = 0;
 
   const colors = shuffle(createDeck(numPairsToWin));
   createCards(colors);
@@ -65,7 +62,6 @@ function unFlipCard(card) {
 }
 
 function handleCardClick(e) {
-  clicks++;
   let card = e.target;
   flipCard(card);
   selectedCards.push(card);
@@ -104,15 +100,6 @@ function handleNotMatch() {
 
 function checkForWin() {
   if (score === numPairsToWin) {
-    setTimeout(alert("You win!"), FOUND_MATCH_WAIT_MSECS);
-    updateBest();
+    setTimeout(alert("Congratulations! You win!"), 500);
   }
-}
-
-function updateBest() {
-  if (clicks < best || best === 0) {
-    best = clicks;
-  }
-  let lblBest = document.getElementById("best-display");
-  lblBest.innerHTML = best;
 }

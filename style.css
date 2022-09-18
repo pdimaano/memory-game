@@ -32,10 +32,6 @@ h1 {
   padding: 5px;
 }
 
-#best-display {
-  padding-top: 6px;
-}
-
 .red {
   background-color: #dd1515;
 }
@@ -68,11 +64,19 @@ h1 {
   background-color: #000000;
 }
 
+.pink {
+  background-color: #e784d2;
+}
+
+.brown {
+  background-color: #964b00;
+}
+
 .back {
-  background-color: #635f5f;
-  transition: all .2s ease-in-out;
+  background-color: #c7c0c0;
+  transition: all .1s linear;
 }
 
 .back:hover {
-  transform: scale(1.3);
+  transform: scale(1.1);
 }
