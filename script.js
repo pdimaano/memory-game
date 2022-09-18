@@ -2,62 +2,117 @@
 
 const FOUND_MATCH_WAIT_MSECS = 1000;
 const COLORS = [
-  "red", "blue", "green", "orange", "purple",
-  "red", "blue", "green", "orange", "purple",
+  "red", "orange", "blue", "purple", "green", "yellow", "white", "black"
 ];
 
-const colors = shuffle(COLORS);
+const selectedCards = [];
+let score = 0;
+let clicks = 0;
+let numPairsToWin = 6;
+let best = 0;
 
-createCards(colors);
+document.getElementById("new-game").addEventListener("click", newGame);
 
+function newGame() {
+  let board = document.getElementById("game");
+  while (board.firstChild) {
+    board.removeChild(board.firstChild);
+  }
+  score = 0;
+  clicks = 0;
 
-/** Shuffle array items in-place and return shuffled array. */
+  const colors = shuffle(createDeck(numPairsToWin));
+  createCards(colors);
+}
+
+function createDeck(numPairsToWin) {
+  let deck = [];
+  for (let i = 0; i < numPairsToWin; i++) {
+    deck.push(COLORS[i]);
+    deck.push(COLORS[i]);
+  }
+  return deck;
+}
 
 function shuffle(items) {
-  // This algorithm does a "perfect shuffle", where there won't be any
-  // statistical bias in the shuffle (many naive attempts to shuffle end up not
-  // be a fair shuffle). This is called the Fisher-Yates shuffle algorithm; if
-  // you're interested, you can learn about it, but it's not important.
-
   for (let i = items.length - 1; i > 0; i--) {
-    // generate a random index between 0 and i
     let j = Math.floor(Math.random() * i);
-    // swap item at i <-> item at j
     [items[i], items[j]] = [items[j], items[i]];
   }
-
   return items;
 }
 
-/** Create card for every color in colors (each will appear twice)
- *
- * Each div DOM element will have:
- * - a class with the value of the color
- * - a click event listener for each card to handleCardClick
- */
-
 function createCards(colors) {
   const gameBoard = document.getElementById("game");
-
   for (let color of colors) {
-    // missing code here ...
+    let new_card = document.createElement("div");
+    new_card.classList.add(color);
+    new_card.classList.add("card");
+    new_card.classList.add("back");
+    new_card.addEventListener("click", handleCardClick);
+    gameBoard.appendChild(new_card);
   }
 }
 
-/** Flip a card face-up. */
-
 function flipCard(card) {
-  // ... you need to write this ...
+  card.classList.remove("back");
+  card.removeEventListener("click", handleCardClick);
 }
-
-/** Flip a card face-down. */
 
 function unFlipCard(card) {
-  // ... you need to write this ...
+  card.classList.add("back");
+  card.addEventListener("click", handleCardClick);
 }
 
-/** Handle clicking on a card: this could be first-card or second-card. */
+function handleCardClick(e) {
+  clicks++;
+  let card = e.target;
+  flipCard(card);
+  selectedCards.push(card);
+  if (selectedCards.length === 2) {
+    let unclickedCards = document.getElementsByClassName("back");
+    for (let card of unclickedCards) {
+      card.removeEventListener("click", handleCardClick);
+    }
+    setTimeout(checkForMatch, FOUND_MATCH_WAIT_MSECS);
+  }
+}
 
-function handleCardClick(evt) {
-  // ... you need to write this ...
+function checkForMatch() {
+  if (selectedCards[0].className === selectedCards[1],className) {
+    handleMatch();
+  } else {
+    handleNotMatch();
+  }
+  selectedCards.length = 0;
+  let unmatchedCards = document.getElementsByClassName("back");
+  for (let card of unmatchedCards) {
+    card.addEventListener("click", handleCardClick);
+  }
+}
+
+function handleMatch() {
+  score++;
+  checkForWin();
+}
+
+function handleNotMatch() {
+  for (let card of selectedCards) {
+    unFlipCard(card)
+  }
+}
+
+function checkForWin() {
+  if (score === numPairsToWin) {
+    setTimeout(alert("You win!"), FOUND_MATCH_WAIT_MSECS);
+    updateBest();
+  }
+}
+
+function updateBest() {
+  if (clicks < best || best === 0) {
+    best = clicks;
+  }
+  let lblBest = document.getElementById("best-display");
+  lblBest.innerHTML = best;
 }
