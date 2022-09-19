@@ -27,12 +27,16 @@ h1 {
     display: inline-block;
 }
 
-#controls {
+#console {
   display: flex;
   align-items: center;
   border-radius: 8px;
   margin-bottom: 9px;
   padding: 15px;
+}
+
+#best-score {
+  padding-top: 8px;
 }
 
 #new-game {

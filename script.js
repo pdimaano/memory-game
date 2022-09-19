@@ -7,7 +7,9 @@ const COLORS = [
 
 const selectedCards = [];
 let score = 0;
+let clicks = 0;
 let numPairsToWin = 10;
+let best = 0;
 
 document.getElementById("new-game").addEventListener("click", newGame);
 
@@ -17,6 +19,8 @@ function newGame() {
     board.removeChild(board.firstChild);
   }
   score = 0;
+  clicks = 0;
+  updateCounters();
 
   const colors = shuffle(createDeck(numPairsToWin));
   createCards(colors);
@@ -62,6 +66,8 @@ function unFlipCard(card) {
 }
 
 function handleCardClick(e) {
+  clicks++;
+  updateCounters();
   let card = e.target;
   flipCard(card);
   selectedCards.push(card);
@@ -89,6 +95,7 @@ function checkForMatch() {
 
 function handleMatch() {
   score++;
+  updateCounters();
   checkForWin();
 }
 
@@ -101,5 +108,19 @@ function handleNotMatch() {
 function checkForWin() {
   if (score === numPairsToWin) {
     setTimeout(alert("Congratulations! You win!"), 500);
+    updateBest();
   }
+}
+
+function updateCounters() {
+  let lblClicks = document.getElementById("clicks-count");
+  lblClicks.innerHTML = clicks;
+}
+
+function updateBest() {
+  if (clicks < best || best === 0) {
+    best = clicks;
+  }
+  let lblBest = document.getElementById("best-score");
+  lblBest.innerHTML = best;
 }
