@@ -113,14 +113,14 @@ function checkForWin() {
 }
 
 function updateCounters() {
-  let numClicks = document.getElementById("click-count");
-  numClicks.innerHTML = clicks;
+  let totalClicks = document.getElementById("click-count");
+  totalClicks.innerHTML = clicks;
 }
 
 function updateBest() {
   if (clicks < best || best === 0) {
     best = clicks;
   }
-  let numBest = document.getElementById("best-score");
-  numBest.innerHTML = best;
+  let bestScore = document.getElementById("best-score");
+  bestScore.innerHTML = best;
 }
