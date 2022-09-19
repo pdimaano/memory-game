@@ -76,11 +76,11 @@ function handleCardClick(e) {
     for (let card of unclickedCards) {
       card.removeEventListener("click", handleCardClick);
     }
-    setTimeout(checkForMatch, FOUND_MATCH_WAIT_MSECS);
+    setTimeout(checkMatch, FOUND_MATCH_WAIT_MSECS);
   }
 }
 
-function checkForMatch() {
+function checkMatch() {
   if (selectedCards[0].className === selectedCards[1].className) {
     handleMatch();
   } else {
@@ -107,20 +107,20 @@ function handleNotMatch() {
 
 function checkForWin() {
   if (score === numPairsToWin) {
-    setTimeout(alert("Congratulations! You win!"), 500);
+    setTimeout(alert("Congratulations! You win!"), 300);
     updateBest();
   }
 }
 
 function updateCounters() {
-  let lblClicks = document.getElementById("clicks-count");
-  lblClicks.innerHTML = clicks;
+  let numClicks = document.getElementById("click-count");
+  numClicks.innerHTML = clicks;
 }
 
 function updateBest() {
   if (clicks < best || best === 0) {
     best = clicks;
   }
-  let lblBest = document.getElementById("best-score");
-  lblBest.innerHTML = best;
+  let numBest = document.getElementById("best-score");
+  numBest.innerHTML = best;
 }
