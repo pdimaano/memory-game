@@ -8,11 +8,11 @@ h1 {
   padding: 8px;
   text-align: center;
   font-size: 50px;
-  margin: 15px;
+  margin: 8px;
 }
 
 #game {
-  margin: auto;
+  margin: 0 auto 50px;
   box-sizing: border-box;
   background-color: #eeeeee;
   border-radius: 10px;
@@ -30,9 +30,14 @@ h1 {
 #console {
   display: flex;
   align-items: center;
-  border-radius: 8px;
-  margin-bottom: 9px;
-  padding: 15px;
+  flex-direction: column;
+  margin: 9px;
+  padding: 5px;
+}
+
+.scores {
+  padding: 10px;
+  font-size: 20px;
 }
 
 #best-score {
@@ -40,7 +45,7 @@ h1 {
 }
 
 #new-game {
-  margin: auto;
+  margin: 10px;
   padding: 10px 20px;
   font-size: 20px;
 }
